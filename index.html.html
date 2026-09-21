@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Digital Closet ✦ 2000s Dress-Up</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Playfair+Display:wght@600;700&display=swap');
+:root{--pink:#f5b8c8;--hot:#d65c83;--cream:#fff8e9;--ink:#4c3440;--lav:#d9c8e8;--mint:#cce4d7;--shadow:6px 6px 0 #9f7182}
+*{box-sizing:border-box} body{margin:0;background:#f7dfcf;color:var(--ink);font-family:"Courier Prime",monospace}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;background-image:radial-gradient(#8b5c6b .7px,transparent .7px);background-size:7px 7px}
+header{padding:22px 16px 10px;text-align:center}.logo{font:700 clamp(32px,7vw,62px) "Playfair Display",serif;letter-spacing:3px;color:#743f54;text-shadow:3px 3px #fff}
+.subtitle{font-size:12px;letter-spacing:2px}
+.wrap{max-width:1200px;margin:auto;padding:10px 14px 35px}
+.app{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:14px;align-items:start}
+.panel{background:rgba(255,248,233,.94);border:3px solid #704457;border-radius:12px;box-shadow:var(--shadow);padding:12px}
+.panel h2{font:700 20px "Playfair Display",serif;margin:2px 0 10px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.tab,.btn{border:2px solid #704457;background:#f8cbd6;color:#5d3948;border-radius:8px;padding:7px 9px;font:700 12px "Courier Prime";cursor:pointer;box-shadow:2px 2px #9d7180}.tab.active{background:#b9d7c9}.btn:active,.tab:active{transform:translate(2px,2px);box-shadow:none}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-height:520px;overflow:auto;padding:2px}
+.card{background:white;border:2px dashed #bd8196;border-radius:8px;padding:5px;text-align:center;cursor:pointer;position:relative}.card img{width:100%;height:105px;object-fit:contain}.card small{font-size:10px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.delete{position:absolute;right:2px;top:2px;border:0;background:#fff;color:#b03c61;border-radius:50%;cursor:pointer}
+.closet{margin-top:14px;border-top:2px dotted #b57b90;padding-top:10px}
+.avatar-stage{min-height:610px;position:relative;border:3px double #704457;border-radius:12px;background:linear-gradient(135deg,#ead8ee,#fff0e6);overflow:hidden}
+.avatar-stage:before{content:"MY CLOSET";position:absolute;top:15px;left:0;right:0;text-align:center;font:700 22px "Playfair Display";letter-spacing:4px;opacity:.55}
+.doll{position:absolute;inset:65px 0 15px;display:flex;justify-content:center;align-items:flex-end}
+.doll svg{height:92%;max-width:78%;overflow:visible;filter:drop-shadow(3px 4px 0 rgba(90,50,65,.12))}
+.wear{position:absolute;left:50%;transform:translateX(-50%);pointer-events:none;max-width:74%;object-fit:contain;display:none}
+.wear.show{display:block}.wear.top{top:28%;width:38%;z-index:4}.wear.jacket{top:25%;width:47%;z-index:6}.wear.bottom{top:47%;width:38%;z-index:3}.wear.shoes{bottom:6%;width:36%;z-index:5}.wear.hat{top:5%;width:27%;z-index:8}.wear.accessory{top:30%;width:20%;z-index:9}
+.controls{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:10px}.arrow{font-size:22px;width:44px;height:42px}
+.current{text-align:center;min-width:120px;font-size:11px}
+.upload-box{border:2px dashed #b26c83;border-radius:10px;padding:10px;background:#fff}.row{display:flex;gap:7px;flex-wrap:wrap}.row>*{flex:1}.status{font-size:11px;min-height:16px;margin-top:7px}.hint{font-size:10px;line-height:1.5;opacity:.8}
+.modal{position:fixed;inset:0;background:#432b38aa;display:none;align-items:center;justify-content:center;padding:15px;z-index:99}.modal.show{display:flex}.modalbox{max-width:430px;width:100%;background:var(--cream);border:3px solid #704457;border-radius:12px;box-shadow:8px 8px #704457;padding:18px}.modalbox h3{font:700 23px "Playfair Display";margin-top:0}
+@media(max-width:850px){.app{grid-template-columns:1fr}.avatar-stage{min-height:560px}.panel:nth-child(2){order:-1}.grid{max-height:300px}}
+@media(max-width:420px){.avatar-stage{min-height:500px}.doll svg{height:88%}.wear.top{top:29%}.wear.bottom{top:48%}.grid{grid-template-columns:repeat(2,1fr)}}
+
+/* --- 2000s fashion makeover --- */
+header{position:relative}
+.fashion-sticker{display:inline-block;margin-top:8px;background:#fff;border:2px solid #704457;padding:5px 12px;transform:rotate(-2deg);font-size:11px;box-shadow:3px 3px 0 #c38b9c}
+.app{grid-template-columns:minmax(250px,1fr) minmax(360px,1.25fr) minmax(240px,1fr);gap:18px}
+.panel{border-radius:5px;box-shadow:7px 7px 0 #9f7182;position:relative}
+.panel:after{content:"";position:absolute;inset:5px;pointer-events:none;border:1px dotted #d49aaa;border-radius:3px}
+.panel>*{position:relative;z-index:1}
+.wardrobe-panel{background:linear-gradient(#fffaf0,#fff2f0)}
+.avatar-panel{background:linear-gradient(#fff7ed,#f5e8f3)}
+.looks-panel{background:linear-gradient(#fff8e9,#f0e8f6)}
+.mini-note{font-size:10px;line-height:1.4;margin:-5px 0 9px}
+.fashion-label{text-align:center;font:700 12px "Courier Prime";letter-spacing:4px;color:#9c536e;margin:2px 0 6px}
+.avatar-stage{box-shadow:inset 0 0 0 2px #fff, inset 0 0 35px #e2c5d1}
+.quick-cats{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin-top:8px}
+.quick-cats button{border:1px solid #704457;background:#fff3f7;border-radius:20px;padding:4px 7px;font:10px "Courier Prime";cursor:pointer}
+.quick-cats button.active{background:#b9d7c9}
+.card{transition:transform .12s,box-shadow .12s}
+.card:hover{transform:translateY(-2px) rotate(-.5deg);box-shadow:3px 3px 0 #d7a3b3}
+#outfitList .card{background:#fff}
+@media(max-width:850px){
+  .app{grid-template-columns:1fr}
+  .avatar-panel{order:-1}
+  .avatar-stage{min-height:570px}
+}
+@media(max-width:500px){
+  body{overflow-x:hidden}
+  .wrap{padding:8px}
+  .app{gap:12px}
+  .avatar-stage{min-height:500px}
+  .wear.top{width:40%}.wear.jacket{width:50%}.wear.bottom{width:40%}.wear.shoes{width:39%}.wear.hat{width:30%}.wear.accessory{width:22%}
+  .logo{letter-spacing:1px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">MY DIGITAL CLOSET</div>
+  <div class="subtitle">✦ MIX • MATCH • SAVE ✦</div>
+  <div class="fashion-sticker">DRESS ME UP! ♡</div>
+</header>
+<div class="wrap">
+<div class="app">
+
+<section class="panel wardrobe-panel">
+<h2>♡ MY CLOSET</h2>
+<div class="mini-note">Pick a category, then tap a piece. Every category stays ON at the same time!</div>
+<div class="tabs" id="tabs"></div>
+<div class="grid" id="items"></div>
+<div class="closet">
+<h2>+ Add clothes</h2>
+<div class="upload-box">
+<input id="file" type="file" accept="image/*">
+<div class="row" style="margin-top:8px">
+<select id="cat">
+<option value="top">Oberteil</option><option value="jacket">Jacke</option><option value="bottom">Hose / Rock</option><option value="shoes">Schuhe</option><option value="hat">Hut / Mütze</option><option value="accessory">Accessoire</option>
+</select>
+<input id="name" placeholder="Name (z.B. Pink Top)">
+</div>
+<button class="btn" id="add" style="margin-top:8px;width:100%">Kleidungsstück hinzufügen</button>
+<div class="status" id="status"></div>
+<div class="hint">Die Fotos werden lokal in deinem Browser gespeichert. Für die automatische Hintergrundentfernung wird die kostenlose Open-Source-KI beim ersten Mal einmal geladen.</div>
+</div>
+</div>
+</section>
+
+<section class="panel avatar-panel">
+<div class="fashion-label">TODAY'S LOOK</div>
+<div class="avatar-stage" id="stage">
+<div class="doll">
+<svg viewBox="0 0 300 600" aria-label="Puppe" role="img">
+<ellipse cx="150" cy="110" rx="57" ry="70" fill="#f3c7b8" stroke="#6b4454" stroke-width="3"/>
+<path d="M94 103 Q88 35 150 30 Q212 35 206 103 Q190 66 150 70 Q110 66 94 103" fill="#704457" stroke="#6b4454" stroke-width="3"/>
+<circle cx="128" cy="112" r="5" fill="#4c3440"/><circle cx="172" cy="112" r="5" fill="#4c3440"/>
+<path d="M140 142 Q150 149 160 142" fill="none" stroke="#4c3440" stroke-width="3" stroke-linecap="round"/>
+<path d="M105 185 Q150 165 195 185 L215 390 L85 390 Z" fill="#f3c7b8" stroke="#6b4454" stroke-width="3"/>
+<path d="M105 185 L72 335 L108 345 L135 245 M195 185 L228 335 L192 345 L165 245" fill="#f3c7b8" stroke="#6b4454" stroke-width="3"/>
+<path d="M115 385 L92 550 L137 550 L150 410 L163 550 L208 550 L185 385" fill="#f3c7b8" stroke="#6b4454" stroke-width="3"/>
+<path d="M91 550 Q114 535 137 550 L137 565 L88 565Z M163 550 Q186 535 209 550 L212 565 L162 565Z" fill="#e9b7c6" stroke="#6b4454" stroke-width="3"/>
+</svg>
+<img class="wear hat" id="wear-hat">
+<img class="wear top" id="wear-top">
+<img class="wear jacket" id="wear-jacket">
+<img class="wear bottom" id="wear-bottom">
+<img class="wear shoes" id="wear-shoes">
+<img class="wear accessory" id="wear-accessory">
+</div>
+</div>
+<div class="controls">
+  <button class="btn arrow" id="prev">◀</button>
+  <div class="current" id="current">Oberteil<br>0 / 0</div>
+  <button class="btn arrow" id="next">▶</button>
+</div>
+<div class="quick-cats" id="quickCats"></div>
+<div class="hint" style="text-align:center;margin-top:8px">← / → wechseln nur die ausgewählte Kategorie. Alle anderen Kleidungsstücke bleiben an!</div>
+</section>
+
+<section class="panel looks-panel">
+<h2>✦ MY LOOKS</h2>
+<div id="outfitList" class="grid" style="grid-template-columns:repeat(2,1fr);max-height:none"></div>
+<div style="margin-top:12px" class="row">
+<button class="btn" id="saveOutfit">♡ Look speichern</button>
+<button class="btn" id="clearOutfit">Reset</button>
+</div>
+<h2 style="margin-top:18px">Saved Looks</h2>
+<div id="looks" class="grid" style="grid-template-columns:1fr 1fr;max-height:300px"></div>
+</section>
+
+</div>
+</div>
+
+<div class="modal" id="modal"><div class="modalbox">
+<h3>✦ Hintergrund wird entfernt …</h3>
+<p id="modalText">Beim ersten Bild kann das etwas länger dauern, weil das KI-Modell einmal geladen wird.</p>
+<button class="btn" id="closeModal">Abbrechen</button>
+</div></div>
+
+<script type="module">
+import removeBackground from "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm";
+
+const KEY="my-digital-closet-v1", LOOKS="my-digital-looks-v1";
+const cats=[["top","Oberteil"],["jacket","Jacke"],["bottom","Hose / Rock"],["shoes","Schuhe"],["hat","Hut / Mütze"],["accessory","Accessoires"]];
+let data=JSON.parse(localStorage.getItem(KEY)||"[]");
+let looks=JSON.parse(localStorage.getItem(LOOKS)||"[]");
+let active="top", index={top:0,jacket:0,bottom:0,shoes:0,hat:0,accessory:0};
+
+const $=s=>document.querySelector(s);
+function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+function saveLooks(){localStorage.setItem(LOOKS,JSON.stringify(looks))}
+function items(cat){return data.filter(x=>x.cat===cat)}
+function tabs(){
+ $("#tabs").innerHTML=cats.map(([id,n])=>`<button class="tab ${id===active?"active":""}" data-cat="${id}">${n}</button>`).join("");
+ $("#quickCats").innerHTML=cats.map(([id,n])=>`<button class="${id===active?"active":""}" data-qcat="${id}">${n}</button>`).join("");
+ document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{active=b.dataset.cat;render();});
+ document.querySelectorAll("[data-qcat]").forEach(b=>b.onclick=()=>{active=b.dataset.qcat;render();});
+}
+function render(){
+ tabs();
+ const arr=items(active); if(index[active]>=arr.length) index[active]=Math.max(0,arr.length-1);
+ $("#items").innerHTML=arr.length?arr.map((x,i)=>`<div class="card" data-i="${i}">
+ <button class="delete" title="löschen">×</button><img src="${x.src}"><small>${esc(x.name)}</small></div>`).join("")
+ : `<div class="hint" style="grid-column:1/-1">Noch nichts in dieser Kategorie.<br>Füge links ein Foto hinzu.</div>`;
+ document.querySelectorAll("#items .card").forEach(c=>{
+   c.onclick=e=>{if(e.target.classList.contains("delete"))return; index[active]=+c.dataset.i; wearActive(); render()};
+   c.querySelector(".delete").onclick=e=>{e.stopPropagation();const x=arr[+c.dataset.i];data=data.filter(y=>y.id!==x.id);save();render();wearActive();};
+ });
+ renderOutfit(); renderLooks(); wearActive();
+}
+function wearActive(){
+ cats.forEach(([id])=>{const el=$("#wear-"+id); if(el) el.classList.remove("show")});
+ cats.forEach(([id])=>{
+   const arr=items(id), el=$("#wear-"+id); if(!el||!arr.length)return;
+   const x=arr[index[id]||0]; el.src=x.src; el.classList.add("show");
+ });
+ const arr=items(active);
+ $("#current").innerHTML=`${cats.find(x=>x[0]===active)[1]}<br>${arr.length?(index[active]+1):0} / ${arr.length}`;
+}
+function renderOutfit(){
+ const selected=cats.map(([id,n])=>{const a=items(id);return a.length?a[index[id]||0]:null}).filter(Boolean);
+ $("#outfitList").innerHTML=selected.length?selected.map(x=>`<div class="card"><img src="${x.src}"><small>${esc(x.name)}</small></div>`).join("")
+ : `<div class="hint" style="grid-column:1/-1">Dein Outfit erscheint hier.</div>`;
+}
+function renderLooks(){
+ $("#looks").innerHTML=looks.length?looks.map((look,i)=>`<div class="card" data-look="${i}">
+ <img src="${look.preview||look.items[0]?.src||""}"><small>${esc(look.name)}</small>
+ <button class="delete" title="löschen">×</button></div>`).join("")
+ : `<div class="hint" style="grid-column:1/-1">Noch keine Looks gespeichert.</div>`;
+ document.querySelectorAll("[data-look]").forEach(c=>c.onclick=e=>{
+   if(e.target.classList.contains("delete")){looks.splice(+c.dataset.look,1);saveLooks();renderLooks();return}
+   const l=looks[+c.dataset.look]; l.items.forEach(x=>{if(index[x.cat]!==undefined){const a=items(x.cat),j=a.findIndex(y=>y.id===x.id);if(j>=0)index[x.cat]=j}});render();
+ });
+}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function blobToDataURL(blob){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(blob)})}
+
+$("#prev").onclick=()=>{const a=items(active);if(!a.length)return;index[active]=(index[active]-1+a.length)%a.length;wearActive();renderOutfit()};
+$("#next").onclick=()=>{const a=items(active);if(!a.length)return;index[active]=(index[active]+1)%a.length;wearActive();renderOutfit()};
+document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")$("#prev").click();if(e.key==="ArrowRight")$("#next").click()});
+
+$("#add").onclick=async()=>{
+ const file=$("#file").files[0], cat=$("#cat").value, name=$("#name").value.trim()||"Neues Teil";
+ if(!file){$("#status").textContent="Bitte zuerst ein Foto auswählen.";return}
+ $("#modal").classList.add("show");$("#modalText").textContent="KI wird vorbereitet …";
+ try{
+   const blob=await removeBackground(file,{output:{format:"image/png",quality:0.9}});
+   $("#modalText").textContent="Fast fertig …";
+   const src=await blobToDataURL(blob);
+   data.push({id:crypto.randomUUID(),cat,name,src});
+   save();$("#file").value="";$("#name").value="";$("#status").textContent="✓ Gespeichert!";
+   $("#modal").classList.remove("show");active=cat;index[cat]=items(cat).length-1;render();
+ }catch(err){console.error(err);$("#modalText").textContent="Das Bild konnte nicht verarbeitet werden. Probiere ein anderes Foto.";setTimeout(()=>$("#modal").classList.remove("show"),2500)}
+};
+$("#closeModal").onclick=()=>$("#modal").classList.remove("show");
+
+$("#saveOutfit").onclick=()=>{
+ const chosen=cats.map(([id])=>{const a=items(id);return a.length?a[index[id]||0]:null}).filter(Boolean);
+ if(!chosen.length)return alert("Zieh zuerst mindestens ein Kleidungsstück an.");
+ const name=prompt("Name für deinen Look:","My Look")||"My Look";
+ looks.unshift({name,items:chosen,preview:chosen[0].src});looks=looks.slice(0,30);saveLooks();renderLooks();
+};
+$("#clearOutfit").onclick=()=>{cats.forEach(([id])=>index[id]=0);render()};
+
+render();
+</script>
+</body>
+</html>
